@@ -1,0 +1,133 @@
+
+*{
+    margin: 0;
+    padding: 0x;
+    box-sizing: border-box;
+    
+}
+
+.body{
+	font-family: sans-serif;
+	background: white;
+	padding-top: 30px;
+        display: flex;
+        min-height: 100vh; 
+   
+}
+
+.form{
+    
+    background-color: #fbfbff;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 400px;
+    padding: 4.5em 3em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 5px rgb(0 0 0 /30%);
+    text-align: center;
+    font-family: sans-serif;
+    
+}
+
+.form__title{
+	font-size: 2rem;
+	margin-bottom: .5em;
+}
+
+.form__paragraph{
+    
+   font-weight: 300; 
+  
+}
+
+.form__link{
+    
+    font-weight: 400;
+    color: #4cadca;
+}
+
+.form__container{
+	margin-top: 3em;
+	display: grid;
+	gap: 2.5em;
+}
+
+.form__group{
+	position: relative;
+	--color: #5757577e;
+}
+
+.form__input{
+	width: 100%;
+	font-size: 1rem;
+	padding: .6em .3em;
+	background: none;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #5757577e;	
+	font-family: sans-serif;
+}
+
+.form__input:focus,
+.form__input:not(:placeholder-shown){
+	color: black;
+}
+
+.form__input:focus + .form__label, 
+.form__input:not(:placeholder-shown) + .login-label{
+	transform: translateY(-12px) scale(.7);
+	transform-origin: left top;
+	color: #4cadca;
+}
+
+
+
+.form__label{
+	color: black;
+	cursor: pointer;
+	position: absolute;
+	top: 0%;
+	left: 5px;
+	transform: translateY(10px);
+	transition: transform .5s, color .3s;
+        font-family: sans-serif;
+}
+
+
+.form__line{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background-color: #4cadca;
+	transform: scale(0);
+	transform: left bottom;
+	transition: transform .4s;
+        font-family: sans-serif;
+}
+
+.form__submit{
+	background: #4cadca;
+	color: white;
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 1rem;
+	padding: .8em 0;
+	border: none;
+	border-radius: .5em;
+  position: relative;
+  top: 40px;
+}
+.login-submit{
+	background: #4cadca;
+	color: white;
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 1rem;
+	padding: .8em 0;
+	border: none;
+	border-radius: .5em;
+  position: relative;
+  top: 40px;
+}

@@ -1,0 +1,12 @@
+.bien{
+    padding-left: 10px;
+    font-size:40px;
+    color:#4cadca;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
