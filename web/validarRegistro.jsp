@@ -13,24 +13,81 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="conexion.Connector"%>
 <!DOCTYPE html>
-
 <%
 
 Connection conn = Connector.conectarBaseDatos();
 ResultSet rs = null;
 Statement st = null;
-
+//obtener datos
+String sentence="";
+java.sql.Timestamp fecha = new java.sql.Timestamp(new Date().getTime());
 String nombre = request.getParameter("nombre");
 String email = request.getParameter("email");
 String pass1 = request.getParameter("pass1");
 String gen = request.getParameter("gen");
-
 int tra = Integer.parseInt(request.getParameter("tra"));
 int com = Integer.parseInt(request.getParameter("com"));
 int tel = Integer.parseInt(request.getParameter("tel"));
 int periodo = Integer.parseInt(request.getParameter("periodo"));
-
-
+int saldo = 0;
+//registro principal
+if(periodo==4){
+    tel=(int)tel/5;
+    com=(int)com/5;
+    tra=(int)tra/5;
+}
+   try{
+       
+       //insertar inicio
+       sentence="INSERT INTO inicio (ini_correo,ini_contraseña) VALUES ('"+email+"','"+pass1+"')";
+       st=conn.createStatement();
+       st.execute(sentence);
+       //insertar gastos
+       sentence="INSERT INTO gastos_registro (gas_pasaje,gas_comida,gas_telefonia) VALUES ('"+tra+"','"+com+"','"+tel+"')";
+       st=conn.createStatement();
+       st.execute(sentence);
+       //id gastos
+       sentence="SELECT gas_id FROM gastos_registro WHERE gas_pasaje='"+tra+"' AND gas_comida ='"+com+"' AND gas_telefonia ='"+tel+"';";
+       st=conn.createStatement();
+       rs=st.executeQuery(sentence);
+       int gas_id=0;
+       if(rs.next()){
+           gas_id=rs.getInt("gas_id");
+       }
+       //id inicio
+       sentence="SELECT ini_id FROM inicio WHERE ini_correo='"+email+"' AND ini_contraseña ='"+pass1+"';";
+       st=conn.createStatement();
+       rs=st.executeQuery(sentence);
+       int ini_id=0;
+       if(rs.next()){
+           ini_id=rs.getInt("ini_id");
+       }
+       
+       //Insertar usuario
+       sentence="INSERT INTO usuario (usu_nombre,usu_genero,usu_fecharegistro,usu_saldo,gas_id,ini_id) VALUES ('"+nombre+"','"+gen+"','"+fecha+"',"+saldo+","+gas_id+","+ini_id+")";
+       st=conn.createStatement();
+       st.execute(sentence);
+       
+       request.getRequestDispatcher("index.jsp").forward(request, response);
+   } catch (SQLException e){
+       out.println("El error ha sido "+e.getMessage());
+   } finally {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException sqlEx) {
+        } // ignore
+        rs = null;
+        }
+        if (st != null) {
+            try {
+                st.close();
+            } catch (SQLException sqlEx) {
+            } // ignore
+            st = null;
+        }
+    }
+/*
 if(periodo==4){
     tel=(int)tel/5;
 } 
@@ -79,7 +136,7 @@ st.execute("insert into proyecto_aula.inicio(ini_correo, ini_contraseña) values
 } catch(Exception e){
     out.println(e);
 }
-
+*/
 %>
 
 <html>
@@ -88,6 +145,6 @@ st.execute("insert into proyecto_aula.inicio(ini_correo, ini_contraseña) values
         <title>JSP Page</title>
     </head>
     <body>
-        <%=s%>
+        
     </body>
 </html>

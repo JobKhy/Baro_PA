@@ -21,7 +21,7 @@
     
     try{
         ps=conn.createStatement();
-        rs=ps.executeQuery("select * from inicio where inicio.ini_correo='"+correo+"';");
+        rs=ps.executeQuery("SELECT * FROM inicio WHERE inicio.ini_correo='"+correo+"' AND ini_contraseña='"+pass+"';");
         if(rs.next()){
             do {
                 if(correo.equals(rs.getString("ini_correo")) && rs.getString("ini_contraseña").equals(pass)){
@@ -31,7 +31,7 @@
                 } else {
                     request.setAttribute("error", "si");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
-                    out.println("pene");
+                   
                 }
             } while (rs.next());
         }else {

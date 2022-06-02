@@ -11,7 +11,6 @@
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link rel="icon" type="image/ico" href="img/baroIco.png" />
 </head>
-
 <% 
     String nombre = request.getParameter("nombre");
     String email = request.getParameter("email");
@@ -27,7 +26,6 @@
         request.getRequestDispatcher("./registro.jsp").forward(request, response);
     }
 %>
-
 <body class="body">
 
   <form class="login-form" id="Reg" action="validarRegistro.jsp" method="post">
@@ -69,7 +67,6 @@
         </div>
       </div>
       <button type="submit" class="login-submit" onclick="valreg2();">
-
         Registrar
       </button>
     </div>

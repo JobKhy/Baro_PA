@@ -1,3 +1,43 @@
+function valNombreAp(action){
+    var texto = action.value;
+    var patron = /^[áéíóúÁÉÍÓÚa-zA-Z ]{0,20}$/;
+    if(!patron.test(texto)){
+        action.style="color: red; border: red solid;"
+    } else action.style=""
+    return patron.test(texto)
+}
+
+ function valPass(action){
+     var texto = action.value;
+     console.log(texto);
+     var patron = /^[a-zA-ZáéíóúÁÉÍÓÚ\d]{4,20}$/;
+     console.log(patron.test(texto));
+     if(!patron.test(texto)){
+         action.style="color: red; border: red solid;"
+         action.setCustomValidity("Las contraseñas deben ser de entre 4 y 20 caracteres, solo pueden ser números y letras");
+     } else {
+         action.style=""
+         action.setCustomValidity("");
+     }
+     return patron.test(texto)
+ }
+
+ function valEmail(action){
+     var texto = action.value;
+     console.log(texto);
+     var patron = /^[\da-z]+@[a-z]{5,7}.[.a-z]{2,6}$/
+     console.log(patron.test(texto));
+     if(!patron.test(texto)){
+         action.style="color: red; border: red solid;"
+         action.setCustomValidity("Introduce correctamente tu correo, Ejemplo example@gmail.com");
+     } else {
+         action.style=""
+         action.setCustomValidity("");
+
+     }
+     return patron.test(texto)
+ }
+  /*
   function valreg2(){
     var Gas_transN=parseInt(document.getElementById('Gas_trans').value);
     var Gas_comN=parseInt(document.getElementById('Gas_com').value);
@@ -71,6 +111,7 @@
     for(var i=0;i< newgenero.length;i++){
         if(newgenero[i].checked==true){
             var genero=newgenero[i].value;
+            
         }
     }
                  
@@ -93,4 +134,5 @@
                 }	
 		}
 
-}
+}*/
+       
